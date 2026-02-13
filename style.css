@@ -537,3 +537,119 @@ textarea.form-control {
         font-size: 1.5rem;
     }
 }
+/* ==========================================
+   EDIT STUDENT - FEATURE BRANCH ENHANCEMENTS
+   ========================================== */
+
+/* ===== Page Background Enhancement ===== */
+body {
+    background: linear-gradient(135deg, #eef2ff, #f8fafc);
+}
+
+/* ===== Card Entrance Animation ===== */
+.container-small .card {
+    animation: slideFade 0.6s ease;
+    border-top: 5px solid var(--primary-color);
+}
+
+@keyframes slideFade {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== Form Input Enhancement ===== */
+#editStudentForm .form-control {
+    background: #f9fbff;
+    border: 2px solid #dbeafe;
+    transition: all 0.3s ease;
+}
+
+#editStudentForm .form-control:hover {
+    border-color: var(--primary-color);
+}
+
+#editStudentForm .form-control:focus {
+    background: #ffffff;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.15);
+    transform: scale(1.02);
+}
+
+/* ===== Floating Label Effect ===== */
+.form-group {
+    position: relative;
+}
+
+.form-group input:focus + label,
+.form-group input:not(:placeholder-shown) + label {
+    transform: translateY(-20px);
+    font-size: 0.75rem;
+    color: var(--primary-color);
+}
+
+/* ===== Button Enhancements ===== */
+.btn-group {
+    margin-top: 1.2rem;
+}
+
+.btn-success {
+    flex: 1;
+    letter-spacing: 0.5px;
+}
+
+.btn-success:hover {
+    box-shadow: 0 8px 20px rgba(16, 185, 129, 0.3);
+}
+
+.btn-secondary {
+    flex: 1;
+}
+
+/* ===== Success Alert Animation ===== */
+.alert-success {
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.4s ease;
+}
+
+.alert-success.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===== Shake Animation for Error ===== */
+@keyframes shake {
+    0% { transform: translateX(0); }
+    25% { transform: translateX(-5px); }
+    50% { transform: translateX(5px); }
+    75% { transform: translateX(-5px); }
+    100% { transform: translateX(0); }
+}
+
+.alert-error.show {
+    display: block;
+    animation: shake 0.4s ease;
+}
+
+/* ===== Back Link Enhancement ===== */
+.container-small a {
+    transition: all 0.3s ease;
+}
+
+.container-small a:hover {
+    color: var(--primary-hover);
+    text-decoration: underline;
+}
+
+/* ===== Active Navbar Highlight for Edit Page ===== */
+.navbar-menu a[href="studentdata.html"] {
+    font-weight: 600;
+    color: var(--primary-color);
+}
