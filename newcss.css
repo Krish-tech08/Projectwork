@@ -1,0 +1,81 @@
+/* ========================================
+   FEATURE BRANCH - EDIT STUDENT PAGE
+   ======================================== */
+
+/* Highlight active nav link (for edit page) */
+.navbar-menu a[href="studentdata.html"] {
+    font-weight: 600;
+}
+
+/* Edit Card Enhancement */
+.container-small .card {
+    animation: fadeInUp 0.5s ease;
+    border-top: 4px solid var(--primary-color);
+}
+
+/* Smooth entrance animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Edit Form Fields Highlight */
+#editStudentForm .form-control {
+    background: #f9fbff;
+    border: 2px solid #dbeafe;
+}
+
+#editStudentForm .form-control:focus {
+    border-color: var(--primary-color);
+    background: #ffffff;
+    transform: scale(1.02);
+}
+
+/* Success Alert Animation */
+.alert-success {
+    display: none;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: all 0.4s ease;
+}
+
+.alert-success.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Button Styling Upgrade */
+.btn-group {
+    margin-top: 1rem;
+    justify-content: space-between;
+}
+
+.btn-success {
+    flex: 1;
+}
+
+.btn-secondary {
+    flex: 1;
+}
+
+/* Back Link Styling */
+.container-small a {
+    transition: all 0.3s ease;
+}
+
+.container-small a:hover {
+    text-decoration: underline;
+    color: var(--primary-hover);
+}
+
+/* Hidden Input Visibility Debug (optional for dev mode) */
+input[type="hidden"] {
+    display: none;
+}
