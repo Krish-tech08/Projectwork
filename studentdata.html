@@ -2,12 +2,12 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Students - Student Management System</title>
-    <!-- Link to CSS stylesheet -->
     <link rel="stylesheet" href="css/style.css">
 </head>
+
 <body>
+
     <!-- ===== NAVIGATION BAR ===== -->
     <nav class="navbar">
         <div class="navbar-container">
@@ -22,6 +22,7 @@
 
     <!-- ===== MAIN CONTAINER ===== -->
     <div class="container">
+
         <!-- Page Header -->
         <div class="page-header">
             <h1 class="page-title">Student Records</h1>
@@ -31,26 +32,28 @@
         <!-- Stats Section -->
         <div class="stats-container">
             <div class="stat-card">
-                <div class="stat-value">3</div>
+                <div class="stat-value" id="totalStat">0</div>
                 <div class="stat-label">Total Students</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value">2</div>
+                <div class="stat-value" id="courseStat">0</div>
                 <div class="stat-label">Active Courses</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value">100%</div>
+                <div class="stat-value" id="enrollmentStat">100%</div>
                 <div class="stat-label">Enrollment Rate</div>
             </div>
         </div>
 
-        <!-- Search Bar -->
+        <!-- Search Bar + Table Card -->
         <div class="card">
+
+            <!-- Search Bar -->
             <div class="search-bar">
                 <input 
-                    type="text" 
-                    id="searchInput" 
-                    class="search-control" 
+                    type="text"
+                    id="searchInput"
+                    class="search-control"
                     placeholder="🔍 Search by name, roll number, or course..."
                     onkeyup="handleSearch()"
                 >
@@ -58,7 +61,7 @@
 
             <!-- Student Table -->
             <div class="table-container">
-                <table class="table" id="studentTable">
+                <table class="table">
                     <thead>
                         <tr>
                             <th>Name</th>
@@ -68,81 +71,120 @@
                             <th>Actions</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <!-- Static Dummy Data Row 1 -->
-                        <tr>
-                            <td>John Doe</td>
-                            <td>CS101</td>
-                            <td>Computer Science</td>
-                            <td>john.doe@example.com</td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="btn btn-small btn-success" onclick="handleEdit('1')">
-                                        Edit
-                                    </button>
-                                    <button class="btn btn-small btn-danger" onclick="handleDelete('1')">
-                                        Delete
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <!-- Static Dummy Data Row 2 -->
-                        <tr>
-                            <td>Jane Smith</td>
-                            <td>ME202</td>
-                            <td>Mechanical Engineering</td>
-                            <td>jane.smith@example.com</td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="btn btn-small btn-success" onclick="handleEdit('2')">
-                                        Edit
-                                    </button>
-                                    <button class="btn btn-small btn-danger" onclick="handleDelete('2')">
-                                        Delete
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-
-                        <!-- Static Dummy Data Row 3 -->
-                        <tr>
-                            <td>Mike Johnson</td>
-                            <td>CS103</td>
-                            <td>Computer Science</td>
-                            <td>mike.johnson@example.com</td>
-                            <td>
-                                <div class="action-buttons">
-                                    <button class="btn btn-small btn-success" onclick="handleEdit('3')">
-                                        Edit
-                                    </button>
-                                    <button class="btn btn-small btn-danger" onclick="handleDelete('3')">
-                                        Delete
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
+                    <tbody id="tableBody">
+                        <!-- Dynamic Data Will Load Here -->
                     </tbody>
                 </table>
             </div>
 
-            <!-- Total Students Count -->
+            <!-- Total Count -->
             <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 2px solid var(--border-color);">
                 <p style="color: var(--text-secondary); font-weight: 600;">
-                    Showing <span style="color: var(--primary-color);">3</span> students
+                    Showing 
+                    <span id="totalStudents" style="color: var(--primary-color);">0</span> 
+                    students
                 </p>
             </div>
+
         </div>
     </div>
 
-    <!-- Link to JavaScript file -->
-    <script src="js/script.js"></script>
-    
-    <!-- Inline script note -->
-    <script>
-        // Note: Search, Edit, and Delete functions are placeholders only
-        // Dynamic table loading will be implemented in feature branches
-        console.log('studentdata.html loaded - Static dummy data displayed');
-    </script>
+<script>
+
+    function getStudents() {
+        return JSON.parse(localStorage.getItem("students")) || [];
+    }
+
+    function saveStudents(students) {
+        localStorage.setItem("students", JSON.stringify(students));
+    }
+
+    function renderTable(data) {
+
+        const tableBody = document.getElementById("tableBody");
+        tableBody.innerHTML = "";
+
+        // Update total count
+        document.getElementById("totalStudents").innerText = data.length;
+        document.getElementById("totalStat").innerText = data.length;
+
+        // Calculate unique courses
+        const uniqueCourses = [...new Set(data.map(s => s.course))];
+        document.getElementById("courseStat").innerText = uniqueCourses.length;
+
+        if (data.length === 0) {
+            tableBody.innerHTML = `
+                <tr>
+                    <td colspan="5" style="text-align:center; color:red;">
+                        No students found
+                    </td>
+                </tr>
+            `;
+            return;
+        }
+
+        data.forEach((student, index) => {
+
+            const row = `
+                <tr>
+                    <td>${student.name}</td>
+                    <td>${student.roll}</td>
+                    <td>${student.course}</td>
+                    <td>${student.email}</td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn btn-small btn-success"
+                                onclick="handleEdit(${index})">
+                                Edit
+                            </button>
+                            <button class="btn btn-small btn-danger"
+                                onclick="handleDelete(${index})">
+                                Delete
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            `;
+
+            tableBody.innerHTML += row;
+        });
+    }
+
+    function handleDelete(index) {
+
+        if (!confirm("Are you sure you want to delete this student?")) return;
+
+        const students = getStudents();
+        students.splice(index, 1);
+        saveStudents(students);
+        renderTable(students);
+    }
+
+    function handleEdit(index) {
+        window.location.href = `form.html?index=${index}`;
+    }
+
+    function handleSearch() {
+
+        const searchValue = document.getElementById("searchInput")
+                                .value.toLowerCase();
+
+        const students = getStudents();
+
+        const filtered = students.filter(student =>
+            student.name.toLowerCase().includes(searchValue) ||
+            student.roll.toLowerCase().includes(searchValue) ||
+            student.course.toLowerCase().includes(searchValue)
+        );
+
+        renderTable(filtered);
+    }
+
+    window.onload = function() {
+        renderTable(getStudents());
+    };
+
+</script>
+
 </body>
 </html>
