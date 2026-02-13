@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Students - Student Management System</title>
+    <!-- Link to CSS stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- ===== NAVIGATION BAR ===== -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="access.html" class="navbar-brand">Student Management</a>
+            <ul class="navbar-menu">
+                <li><a href="form.html">Add Student</a></li>
+                <li><a href="studentdata.html" class="active">View Students</a></li>
+                <li><a href="access.html">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ===== MAIN CONTAINER ===== -->
+    <div class="container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title">Student Records</h1>
+            <a href="form.html" class="btn btn-primary">+ Add New Student</a>
+        </div>
+
+        <!-- Stats Section -->
+        <div class="stats-container">
+            <div class="stat-card">
+                <div class="stat-value">3</div>
+                <div class="stat-label">Total Students</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">2</div>
+                <div class="stat-label">Active Courses</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-value">100%</div>
+                <div class="stat-label">Enrollment Rate</div>
+            </div>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="card">
+            <div class="search-bar">
+                <input 
+                    type="text" 
+                    id="searchInput" 
+                    class="search-control" 
+                    placeholder="🔍 Search by name, roll number, or course..."
+                    onkeyup="handleSearch()"
+                >
+            </div>
+
+            <!-- Student Table -->
+            <div class="table-container">
+                <table class="table" id="studentTable">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Roll No</th>
+                            <th>Course</th>
+                            <th>Email</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Static Dummy Data Row 1 -->
+                        <tr>
+                            <td>John Doe</td>
+                            <td>CS101</td>
+                            <td>Computer Science</td>
+                            <td>john.doe@example.com</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn btn-small btn-success" onclick="handleEdit('1')">
+                                        Edit
+                                    </button>
+                                    <button class="btn btn-small btn-danger" onclick="handleDelete('1')">
+                                        Delete
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Static Dummy Data Row 2 -->
+                        <tr>
+                            <td>Jane Smith</td>
+                            <td>ME202</td>
+                            <td>Mechanical Engineering</td>
+                            <td>jane.smith@example.com</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn btn-small btn-success" onclick="handleEdit('2')">
+                                        Edit
+                                    </button>
+                                    <button class="btn btn-small btn-danger" onclick="handleDelete('2')">
+                                        Delete
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+
+                        <!-- Static Dummy Data Row 3 -->
+                        <tr>
+                            <td>Mike Johnson</td>
+                            <td>CS103</td>
+                            <td>Computer Science</td>
+                            <td>mike.johnson@example.com</td>
+                            <td>
+                                <div class="action-buttons">
+                                    <button class="btn btn-small btn-success" onclick="handleEdit('3')">
+                                        Edit
+                                    </button>
+                                    <button class="btn btn-small btn-danger" onclick="handleDelete('3')">
+                                        Delete
+                                    </button>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Total Students Count -->
+            <div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 2px solid var(--border-color);">
+                <p style="color: var(--text-secondary); font-weight: 600;">
+                    Showing <span style="color: var(--primary-color);">3</span> students
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Link to JavaScript file -->
+    <script src="js/script.js"></script>
+    
+    <!-- Inline script note -->
+    <script>
+        // Note: Search, Edit, and Delete functions are placeholders only
+        // Dynamic table loading will be implemented in feature branches
+        console.log('studentdata.html loaded - Static dummy data displayed');
+    </script>
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Student - Student Management System</title>
+    <!-- Link to CSS stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- ===== NAVIGATION BAR ===== -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="access.html" class="navbar-brand">Student Management</a>
+            <ul class="navbar-menu">
+                <li><a href="form.html">Add Student</a></li>
+                <li><a href="studentdata.html">View Students</a></li>
+                <li><a href="access.html">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- ===== MAIN CONTAINER ===== -->
+    <div class="container-small">
+        <div class="card">
+            <!-- Card Header -->
+            <div class="card-header">
+                <h2 class="card-title">Edit Student Details</h2>
+                <p class="card-subtitle">Update student information below</p>
+            </div>
+
+            <!-- Success Message Container (Hidden by default) -->
+            <div id="updateSuccessAlert" class="alert alert-success">
+                Student details updated successfully!
+            </div>
+
+            <!-- Edit Student Form (Pre-filled with static dummy data) -->
+            <form id="editStudentForm" onsubmit="event.preventDefault(); handleUpdate();">
+                <!-- Hidden field for student ID -->
+                <input type="hidden" id="studentId" name="studentId" value="1">
+
+                <!-- Name Input (Pre-filled) -->
+                <div class="form-group">
+                    <label for="editStudentName" class="form-label">Student Name</label>
+                    <input 
+                        type="text" 
+                        id="editStudentName" 
+                        name="editStudentName" 
+                        class="form-control" 
+                        value="John Doe"
+                        required
+                    >
+                </div>
+
+                <!-- Roll Number Input (Pre-filled) -->
+                <div class="form-group">
+                    <label for="editRollNumber" class="form-label">Roll Number</label>
+                    <input 
+                        type="text" 
+                        id="editRollNumber" 
+                        name="editRollNumber" 
+                        class="form-control" 
+                        value="CS101"
+                        required
+                    >
+                </div>
+
+                <!-- Course Input (Pre-filled) -->
+                <div class="form-group">
+                    <label for="editCourse" class="form-label">Course</label>
+                    <input 
+                        type="text" 
+                        id="editCourse" 
+                        name="editCourse" 
+                        class="form-control" 
+                        value="Computer Science"
+                        required
+                    >
+                </div>
+
+                <!-- Email Input (Pre-filled) -->
+                <div class="form-group">
+                    <label for="editEmail" class="form-label">Email Address</label>
+                    <input 
+                        type="email" 
+                        id="editEmail" 
+                        name="editEmail" 
+                        class="form-control" 
+                        value="john.doe@example.com"
+                        required
+                    >
+                </div>
+
+                <!-- Form Buttons -->
+                <div class="btn-group">
+                    <button type="submit" class="btn btn-success">
+                        Save Changes
+                    </button>
+                    <a href="studentdata.html" class="btn btn-secondary">
+                        Cancel
+                    </a>
+                </div>
+            </form>
+
+            <!-- Navigation Link -->
+            <div style="text-align: center; margin-top: 1.5rem;">
+                <a href="studentdata.html" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">
+                    ← Back to Student List
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Link to JavaScript file -->
+    <script src="js/script.js"></script>
+    
+    <!-- Inline script for form handling -->
+    <script>
+        // Prevent actual form submission and call placeholder function
+        document.getElementById('editStudentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            handleUpdate(); // Placeholder function - no logic implemented yet
+        });
+
+        // Note: In feature branch, this page will:
+        // 1. Get student ID from URL parameter
+        // 2. Load student data from LocalStorage
+        // 3. Pre-fill form fields dynamically
+        // 4. Update data on form submission
+        console.log('new.html loaded - Static dummy data pre-filled for editing');
+    </script>
+</body>
+</html>

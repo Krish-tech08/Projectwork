@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Student Management System</title>
+    <!-- Link to CSS stylesheet -->
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- ===== LOGIN CONTAINER ===== -->
+    <div class="login-container">
+        <div class="login-card">
+            <!-- Login Header -->
+            <div class="login-header">
+                <h1 class="login-title">Student Management</h1>
+                <p class="login-subtitle">Sign in to access your dashboard</p>
+            </div>
+
+            <!-- Error Message Container (Hidden by default) -->
+            <div id="errorAlert" class="alert alert-error">
+                Invalid username or password
+            </div>
+
+            <!-- Login Form -->
+            <form id="loginForm" onsubmit="event.preventDefault(); handleLogin();">
+                <!-- Username Input -->
+                <div class="form-group">
+                    <label for="username" class="form-label">Username</label>
+                    <input 
+                        type="text" 
+                        id="username" 
+                        name="username" 
+                        class="form-control" 
+                        placeholder="Enter your username"
+                        required
+                    >
+                </div>
+
+                <!-- Password Input -->
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        name="password" 
+                        class="form-control" 
+                        placeholder="Enter your password"
+                        required
+                    >
+                </div>
+
+                <!-- Login Button -->
+                <button type="submit" class="btn btn-primary btn-block">
+                    Login
+                </button>
+            </form>
+
+            <!-- Navigation Link -->
+            <div style="text-align: center; margin-top: 1.5rem;">
+                <p style="color: var(--text-secondary); font-size: 0.9rem;">
+                    For testing: <a href="form.html" style="color: var(--primary-color); text-decoration: none; font-weight: 600;">Go to Add Student Form</a>
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Link to JavaScript file -->
+    <script src="js/script.js"></script>
+    
+    <!-- Inline script for form handling -->
+    <script>
+        // Prevent actual form submission and call placeholder function
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            handleLogin(); // Placeholder function - no logic implemented yet
+        });
+    </script>
+</body>
+</html>
